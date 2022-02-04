@@ -17,7 +17,7 @@ namespace DevFreela.Application.Services.Implementations
         }
         public int Create(NewProjectInputModel inputModel)
         {
-            var project = new Project(inputModel.Ttile, inputModel.Description, inputModel.IdClient, inputModel.IdFreelancer, inputModel.TotalCost);
+            var project = new Project(inputModel.Title, inputModel.Description, inputModel.IdClient, inputModel.IdFreelancer, inputModel.TotalCost);
             _dbContext.Projects.Add(project);
 
             return project.Id;
@@ -55,6 +55,8 @@ namespace DevFreela.Application.Services.Implementations
         public ProjectDetailsViewModel GetById(int id)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
+
+            if (project == null) return null;
 
             var projectDetailsViewModel = new ProjectDetailsViewModel(
                 project.Id,
