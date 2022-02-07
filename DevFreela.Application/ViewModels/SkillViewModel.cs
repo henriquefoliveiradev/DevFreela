@@ -1,8 +1,8 @@
 ﻿namespace DevFreela.Application.ViewModels
 {
-    public class SkilViewModel
+    public class SkillViewModel
     {
-        public SkilViewModel(int id, string description)
+        public SkillViewModel(int id, string description)
         {
             Id = id;
             Description = description;
