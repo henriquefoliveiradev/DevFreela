@@ -1,4 +1,6 @@
 ﻿using DevFreela.API.Models;
+using DevFreela.Application.Commands.CreateUser;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,8 @@ namespace DevFreela.API.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
+        private readonly Mediator _mediator;
+
         public UsersController(ExempleClass exempleClass)
         {
 
@@ -24,9 +28,11 @@ namespace DevFreela.API.Controllers
 
         // api/users
         [HttpPost]
-        public IActionResult Post([FromBody] CreateUserModel createUserModel)
+        public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
-            return CreatedAtAction(nameof(GetById), new { id = 1 }, createUserModel);
+            var id = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id }, command);
         }
 
         // api/user/1/login
