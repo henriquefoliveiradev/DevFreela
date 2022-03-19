@@ -13,11 +13,10 @@ namespace DevFreela.API.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        private readonly Mediator _mediator;
-
-        public UsersController(ExempleClass exempleClass)
+        private readonly IMediator _mediator;
+        public UsersController(IMediator mediator)
         {
-
+            _mediator = mediator;
         }
 
         // api/user/1
@@ -39,6 +38,15 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                var messages = ModelState
+                    .SelectMany(ms => ms.Value.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                return BadRequest(messages);
+            }
             var id = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id }, command);
