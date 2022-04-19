@@ -7,6 +7,9 @@ Tecnologias utilizadas:
 - Dapper
 - Padrão Repository
 - CQRS
+- Autenticação e Autorização com JWT
+- Mensageria
+- Microsserviços
 - DDD
 - Clean Code
 - XUnit
