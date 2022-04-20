@@ -16,10 +16,10 @@ namespace DevFreela.Application.Queries.GetAllProjects
         private readonly IProjectRepository _projectRepository;
         private readonly string _connectionString;
 
-        public GetAllProjectsQueryHandler(IProjectRepository projectRepository, IConfiguration configuration)
+        public GetAllProjectsQueryHandler(IProjectRepository projectRepository/*, IConfiguration configuration*/)
         {
             _projectRepository = projectRepository;
-            _connectionString = configuration.GetConnectionString("DevFreelaCs");
+            //_connectionString = configuration.GetConnectionString("DevFreelaCs");
         }
 
         public async Task<List<ProjectViewModel>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
