@@ -5,6 +5,7 @@
         Created = 0,
         InProgress = 1,
         Cancelled = 3,
-        Finished = 4
+        Finished = 4,
+        PaymentPending = 5
     }
 }
