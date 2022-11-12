@@ -16,7 +16,8 @@ namespace DevFreela.Infrastructure.MessageBus
         {
             _factory = new ConnectionFactory
             {
-                HostName = "localhost"
+                Uri = new Uri("amqp://admin:admin@localhost:5672/")
+
             };
         }
 

@@ -7,6 +7,7 @@ using DevFreela.Infrastructure.AuthServices;
 using DevFreela.Infrastructure.Payments;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Infrastructure.Persistence.Repositories;
+using DevFreela.API.Extensions;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,12 +40,7 @@ namespace DevFreela.API
 
             services.AddHttpClient();
 
-
-            services.AddScoped<IProjectRepository, ProjectRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ISkillRepository, SkillRepository>();
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddInfrastructure();
 
             services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
