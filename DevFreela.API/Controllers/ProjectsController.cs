@@ -105,7 +105,7 @@ namespace DevFreela.API.Controllers
             if (!result)
                 return BadRequest("O pagamento não foi processado.");
 
-            return NoContent();
+            return Accepted();
         }
 
         // api/projects/3 DELETE

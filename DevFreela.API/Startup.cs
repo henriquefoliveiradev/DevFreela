@@ -20,6 +20,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using DevFreela.Application.Consumers;
 
 namespace DevFreela.API
 {
@@ -41,6 +42,8 @@ namespace DevFreela.API
             services.AddHttpClient();
 
             services.AddInfrastructure();
+
+            services.AddHostedService<PaymentApprovedConsumer>();
 
             services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
